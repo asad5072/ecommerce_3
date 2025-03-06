@@ -1,10 +1,17 @@
+<script setup>
+const store = useCartStore();
+
+const { products } = storeToRefs(store);
+// console.log(products, "asdfasd")
+const { decreaseCartItem, increaseCartItem, removeProduct } = useCartStore();
+</script>
 <template>
   <div>
     {{ products }}
     <p>Cart Page</p>
     <div v-for="product in products" :key="product.id">
       <p>Title: {{ product.title }}</p>
-      <div class="flex rounded-md overflow-hidden w-32">
+      <div class="flex rounded-md overflow-hidden w-32 py-6">
         <UButton
           @click="decreaseCartItem(product.id)"
           label="-"
@@ -45,8 +52,4 @@
       
   </div>
 </template>
-<script setup>
-const store = useCartStore();
-const { products } = storeToRefs(store);
-// console.log(products, "asdfasd")
-</script>
+
